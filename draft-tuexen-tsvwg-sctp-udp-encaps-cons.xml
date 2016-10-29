@@ -7,7 +7,7 @@
 
 <rfc category="std"
      ipr="trust200902"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-01-to-be.txt"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-01.txt"
      updates="6951">
 <front>
 <title abbrev="Additional Considerations for SCTP over UDP">
@@ -232,6 +232,9 @@ Value    Cause Code                                            Reference
 <t>However, not following the procedures given in this document might allow
 an attacker to take over SCTP associations. The attacker needs only to
 share the IP address of an existing SCTP association.</t>
+<t>It should also be noted that if firewalls will be applied at the
+SCTP association level they have to take the UDP encapsulation into
+account.</t>
 </section>
 
 <section title="Acknowledgments">
