@@ -7,7 +7,7 @@
 
 <rfc category="std"
      ipr="trust200902"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-02-to-be.txt"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03-to-be.txt"
      updates="6951">
 <front>
 <title abbrev="Additional Considerations for SCTP over UDP">
@@ -195,6 +195,12 @@ this field is 0.</t>
 </list>
 All transported integer numbers are in "network byte order" a.k.a.,
 Big Endian.</t>
+</section>
+
+<section title='Middlebox Considerations'>
+<t>Middleboxes often use different timeouts for UDP based flows than
+for other flows. Therefore the HEARTBEAT.Interval parameter SHOULD be
+lowered to 15 seconds when UDP encapsulation is used.</t>
 </section>
 
 <section title='IANA Considerations'>
