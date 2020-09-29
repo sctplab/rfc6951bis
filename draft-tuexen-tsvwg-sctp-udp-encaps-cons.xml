@@ -10,14 +10,14 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04-to-be"
      updates="6951"
      version="3">
 
 <front>
 <title abbrev='Considerations for SCTP over UDP'>
 Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04-to-be"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
@@ -28,7 +28,7 @@ Additional Considerations for UDP Encapsulation of Stream Control Transmission P
     <postal>
         <street>Stegerwaldstrasse 39</street>
         <city>48565 Steinfurt</city>
-        <country>Germany</country>
+        <country>DE</country>
     </postal>
     <email>tuexen@fh-muenster.de</email>
 </address>
@@ -43,7 +43,7 @@ Additional Considerations for UDP Encapsulation of Stream Control Transmission P
         <city>Chapin</city>
         <region>SC</region>
         <code>29036</code>
-        <country>United States</country>
+        <country>US</country>
     </postal>
     <email>randall@lakerest.net</email>
 </address>
