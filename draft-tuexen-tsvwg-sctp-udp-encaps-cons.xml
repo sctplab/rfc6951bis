@@ -254,11 +254,11 @@ account.</t>
 
 <section>
 <name>Acknowledgments</name>
-<t>The authors wish to thank Georgios Papastergiou for the initial
+<t>The authors wish to thank <contact fullname="Georgios Papastergiou"/> for the initial
 problem report.</t>
 <t>The authors wish to thank
-Irene Rüngeler and
-Felix Weinrank
+<contact fullname="Irene Rüngeler"/> and
+<contact fullname="Felix Weinrank"/>
 for their invaluable comments.</t>
 <t>This work has received funding from the European Union's Horizon 2020
 research and innovation programme under grant agreement No. 644334 (NEAT).
