@@ -222,8 +222,8 @@ lowered to 15 seconds when UDP encapsulation is used.</t>
 <name>IANA Considerations</name>
 <t>[NOTE to RFC-Editor: "RFCXXXX" is to be replaced by the RFC number you
 assign this document.]</t>
-<t>[NOTE to RFC-Editor: The requested values for the chunk type and the chunk
-parameter types are tentative and to be confirmed by IANA.]</t>
+<t>[NOTE to RFC-Editor: The requested values for the cause code are tentative
+and to be confirmed by IANA.]</t>
 <t>This document (RFCXXXX) is the reference for the registration
 described in this section.</t>
 <t>A new error cause code has to be assigned by IANA.
