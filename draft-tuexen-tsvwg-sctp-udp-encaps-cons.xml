@@ -1,24 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
-<?rfc toc="yes"?>
-<?rfc compact="yes" ?>
-<?rfc subcompact="no" ?>
-<?rfc strict="yes" ?>
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
+<?rfc toc='yes'?>
+<?rfc compact='yes'?>
+<?rfc subcompact='no'?>
 
-<rfc category="std"
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"
+     xml:lang="en"
      ipr="trust200902"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03-to-be.txt"
-     updates="6951">
+     submissionType="IETF"
+     consensus="true"
+     category="std"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03"
+     updates="6951"
+     version="3">
+
 <front>
-<title abbrev="Additional Considerations for SCTP over UDP">
-Additional Considerations for UDP Encapsulation of Stream Control Transmission
-Protocol (SCTP) Packets</title>
+<title abbrev='Considerations for SCTP over UDP'>
+Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-03"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
-<author initials="M." surname="Tuexen" fullname="Michael Tuexen">
-<organization abbrev='Muenster Univ. of Appl. Sciences'>
-              Muenster University of Applied Sciences</organization>
+<author initials="M." surname="Tüxen" fullname="Michael Tüxen">
+<organization abbrev='Münster Univ. of Appl. Sciences'>
+              Münster University of Applied Sciences</organization>
 <address>
     <postal>
         <street>Stegerwaldstrasse 39</street>
@@ -44,7 +49,7 @@ Protocol (SCTP) Packets</title>
 </address>
 </author>
 
-<date  />
+<date />
 
 <abstract>
 <t>RFC 6951 specifies the UDP encapsulation of SCTP packets.
@@ -57,8 +62,8 @@ packets where the verification tag can not be checked.</t>
 </front>
 
 <middle>
-<section anchor='intro'
-         title='Introduction'>
+<section anchor='intro'>
+<name>Introduction</name>
 <t><xref target="RFC6951"/> specifies the UDP encapsulation of SCTP packets.
 To be able to adopt automatically to changes of the remote UDP encapsulation
 port number, it is updated automatically when processing received packets.
@@ -67,53 +72,60 @@ This includes automatic enabling and disabling of UDP encapsulation.</t>
 received packets and requires the check of the verification tag before
 updating the remote UDP encapsulation port and the possible enabling or
 disabling of UDP encapsulation.</t>
-<t><xref target="RFC6951"/> basically misses a description for the handling
-of received packets where this verification tag check is not possible.
+<t><xref target="RFC6951"/> basically misses a description of the handling
+of received packets where checking the verification tag is not possible.
 This includes packets for which no association can be found and
-packets containing an INIT chunk, since the verification tag for these
-packets must be 0.</t>
+packets containing an INIT chunk, since the verification tag of these
+packets is 0.</t>
 </section>
 
-<section anchor='conventions'
-         title='Conventions'>
-<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in <xref target="RFC2119"/>.</t>
+<section anchor='conventions'>
+<name>Conventions</name>
+<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in
+BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>  when,
+and only when, they appear in all capitals, as shown here.</t>
 </section>
 
-<section title='Handling of Out of the Blue Packets'>
+<section>
+<name>Handling of Out of the Blue Packets</name>
 <t>If the processing of an out of the blue packet requires the sending
 of a packet in response according to the rules specified in Section 8.4 of
-<xref target="RFC4960"/>, the following rules apply:
-<list style='numbers'>
+<xref target="RFC4960"/>, the following rules apply:</t>
+<ol>
+<li>
 <t>If the received packet was encapsulated in UDP, the response packets
 MUST also be encapsulated in UDP.
 The UDP source port and UDP destination port used for sending the response
 packet are the UDP destination port and UDP source port of the received
 packet.</t>
+</li>
+<li>
 <t>If the receive packet was not encapsulated in UDP, the response packet
 MUST NOT be encapsulated in UDP.</t>
-</list>
-Please not that in these cases a check of the of the verification tag is not
+</li>
+</ol>
+<t>Please not that in these cases a check of the of the verification tag is not
 possible.</t>
 </section>
 
-<section title='Handling of SCTP Packets Containing an INIT Chunk Matching an
-                Existing Association'>
+<section>
+<name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Associations</name>
 <t>SCTP packets containing an INIT chunk have the verification tag 0 in
 the common header. Therefore the verification can't be checked.</t>
-<t>The following rules apply when processing the received packet:
-<list style='numbers'>
-<t>The remote UDP encapsulation port for the source address of the received
+<t>The following rules apply when processing the received packet:</t>
+<ol>
+<li><t>The remote UDP encapsulation port for the source address of the received
 SCTP packet MUST NOT be updated if the encapsulation of outgoing packets is
-enabled and the received SCTP packet is encapsulated.</t>
-<t>The UDP encapsulation for outgoing packets towards the source address
+enabled and the received SCTP packet is encapsulated.</t></li>
+<li><t>The UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet MUST NOT be enabled, if it is disabled and the
-received SCTP packet is encapsulated.</t>
-<t>The UDP encapsulation for outgoing packets towards the source address
+received SCTP packet is encapsulated.</t></li>
+<li><t>The UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet MUST NOT be disabled, if it is enabled
-and the received SCTP packet is not encapsulated.</t>
-<t>If the UDP encapsulation for outgoing packets towards the source address
+and the received SCTP packet is not encapsulated.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is disabled and the received SCTP packet is
 encapsulated, an SCTP packet containing an ABORT chunk MUST be sent.
 The ABORT chunk MAY include the error cause defined below indicating an
@@ -121,19 +133,19 @@ The ABORT chunk MAY include the error cause defined below indicating an
 This packet containing the ABORT chunk MUST be encapsulated in UDP.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
-UDP source port of the received packet containing the INIT chunk.</t>
-<t>If the UDP encapsulation for outgoing packets towards the source address
+UDP source port of the received packet containing the INIT chunk.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is disabled and the received SCTP packet is
 not encapsulated, the processing defined in <xref target="RFC4960"/>
 MUST be performed. If a packet is sent in response, it MUST NOT be
-encapsulated.</t>
-<t>If the UDP encapsulation for outgoing packets towards the source address
+encapsulated.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is not
 encapsulated, an SCTP packet containing an ABORT chunk MUST be sent.
 The ABORT chunk MAY include the error cause defined below indicating an
 "Restart of an Association with New Encapsulation Port".
-This packet containing the ABORT chunk MUST NOT be encapsulated in UDP.</t>
-<t>If the UDP encapsulation for outgoing packets towards the source address
+This packet containing the ABORT chunk MUST NOT be encapsulated in UDP.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is
 encapsulated, but the UDP source port of the received SCTP packet is not
 equal to the remote UDP encapsulation port for the source address of the
@@ -143,8 +155,8 @@ The ABORT chunk MAY include the error cause defined below indicating an
 This packet containing the ABORT chunk MUST be encapsulated in UDP.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
-UDP source port of the received packet containing the INIT chunk.</t>
-<t>If the UDP encapsulation for outgoing packets towards the source address
+UDP source port of the received packet containing the INIT chunk.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is
 encapsulated and the UDP source port of the received SCTP packet is
 equal to the remote UDP encapsulation port for the source address of the
@@ -153,14 +165,13 @@ MUST be performed. If a packet is sent in response, it MUST be
 encapsulated.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
-UDP source port of the received packet containing the INIT chunk.</t>
-</list></t>
+UDP source port of the received packet containing the INIT chunk.</t></li>
+</ol>
 
 <t>The error cause indicating an
-"Restart of an Association with New Encapsulation Port" is defined bytes
-the following figure.</t>
-<figure>
-<artwork>
+"Restart of an Association with New Encapsulation Port" is defined by the
+following figure.</t>
+<artwork align="left">
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |        Cause Code = 14        |       Cause Length = 8        |
@@ -168,71 +179,69 @@ the following figure.</t>
 |   Current Encapsulation Port  |     New Encapsulation Port    |
 +-------------------------------+-------------------------------+
 </artwork>
-</figure>
-<t><list style='hanging'>
-<t hangText='Cause Code: 2 bytes (unsigned integer)'>
-<vspace blankLines='0'/>
-This field MUST hold the IANA defined error cause code for the
+
+<dl newline="true">
+<dt>Cause Code: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the IANA defined cause code for the
 "Restart of an Association with New Encapsulation Port" error cause.
-The suggested value of this field for IANA is 14.</t>
-<t hangText='Cause Length: 2 bytes (unsigned integer)'>
-<vspace blankLines='0'/>
-This field holds the length in bytes of the error cause;
+IANA is requested to assign the value 14 for this cause code.</t>
+</dd>
+<dt>Cause Length: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the length in bytes of the error cause;
 the value MUST be 8.</t>
-<t hangText='Current Encapsulation Port: 2 bytes (unsigned integer)'>
-<vspace blankLines='0'/>
-This field holds the remote encapsulation port currently being used
+</dd>
+<dt>Current Encapsulation Port: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the remote encapsulation port currently being used
 for the destination address the received packet containing the INIT chunk was
 sent from.
 If the UDP encapsulation for destination address is currently disabled,
 0 is used.</t>
-<t hangText='New Encapsulation Port: 2 bytes (unsigned integer)'>
-<vspace blankLines='0'/>
-If the received SCTP packet containing the INIT chunk is encapsulated in UDP,
+</dd>
+<dt>New Encapsulation Port: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>If the received SCTP packet containing the INIT chunk is encapsulated in UDP,
 this field holds the UDP source port number of the UDP packet.
 If the received SCTP packet is not encapsulated in UDP,
 this field is 0.</t>
-</list>
-All transported integer numbers are in "network byte order" a.k.a.,
-Big Endian.</t>
+</dd>
+</dl>
+<t>All transported integer numbers are in "network byte order" a.k.a., Big Endian.</t>
 </section>
 
-<section title='Middlebox Considerations'>
+<section>
+<name>Middlebox Considerations</name>
 <t>Middleboxes often use different timeouts for UDP based flows than
 for other flows. Therefore the HEARTBEAT.Interval parameter SHOULD be
 lowered to 15 seconds when UDP encapsulation is used.</t>
 </section>
 
-<section title='IANA Considerations'>
-
-<t>[NOTE to RFC-Editor:
-<list>
-<t>"RFCXXXX" is to be replaced by the RFC number you assign this document.</t>
-</list>
-]</t>
-<t>[NOTE to RFC-Editor:
-<list>
-<t>The suggested value for the error cause code is tentative and to be
-confirmed by IANA.</t>
-</list>
-]</t>
+<section>
+<name>IANA Considerations</name>
+<t>[NOTE to RFC-Editor: "RFCXXXX" is to be replaced by the RFC number you
+assign this document.]</t>
+<t>[NOTE to RFC-Editor: The requested values for the chunk type and the chunk
+parameter types are tentative and to be confirmed by IANA.]</t>
 <t>This document (RFCXXXX) is the reference for the registration
 described in this section.</t>
 <t>A new error cause code has to be assigned by IANA.
 This requires an additional line in the "Error Cause Codes" registry for
 SCTP:</t>
-<figure>
-<artwork>
-Error Cause Codes
-
-Value    Cause Code                                            Reference
------    ----------                                            ---------
-14       Restart of an Association with New Encapsulation Port [RFCXXXX]
-</artwork>
-</figure>
+<t>Error Cause Codes</t>
+<table>
+<thead>
+<tr><th>Value</th> <th>Cause Code                                           </th> <th>Reference</th></tr>
+</thead>
+<tbody>
+<tr><td>14   </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
+</tbody>
+</table>
 </section>
 
-<section title='Security Considerations'>
+<section>
+<name>Security Considerations</name>
 <t>This document does not change the considerations given in
 <xref target="RFC6951"/>.</t>
 <t>However, not following the procedures given in this document might allow
@@ -243,11 +252,12 @@ SCTP association level they have to take the UDP encapsulation into
 account.</t>
 </section>
 
-<section title="Acknowledgments">
-<t>The authors wish to thank Georgios Papastergiou for an initial
+<section>
+<name>Acknowledgments</name>
+<t>The authors wish to thank Georgios Papastergiou for the initial
 problem report.</t>
 <t>The authors wish to thank
-Irene Ruengeler and
+Irene Rüngeler and
 Felix Weinrank
 for their invaluable comments.</t>
 <t>This work has received funding from the European Union's Horizon 2020
@@ -258,10 +268,12 @@ The views expressed are solely those of the author(s).</t>
 </middle>
 
 <back>
-<references title='Normative References'>
-<?rfc include="reference.RFC.2119" ?>
-<?rfc include="reference.RFC.4960" ?>
-<?rfc include="reference.RFC.6951" ?>
+<references>
+<name>Normative References</name>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4960.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6951.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
 </references>
 </back>
 </rfc>
