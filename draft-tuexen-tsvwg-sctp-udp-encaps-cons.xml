@@ -171,6 +171,8 @@ UDP source port of the received packet containing the INIT chunk.</t></li>
 <t>The error cause indicating an
 "Restart of an Association with New Encapsulation Port" is defined by the
 following figure.</t>
+<figure>
+<name>Restart of an Association with New Encapsulation Port error cause</name>
 <artwork align="left">
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -179,7 +181,7 @@ following figure.</t>
 |   Current Encapsulation Port  |     New Encapsulation Port    |
 +-------------------------------+-------------------------------+
 </artwork>
-
+</figure>
 <dl newline="true">
 <dt>Cause Code: 2 bytes (unsigned integer)</dt>
 <dd>
@@ -229,8 +231,8 @@ described in this section.</t>
 <t>A new error cause code has to be assigned by IANA.
 This requires an additional line in the "Error Cause Codes" registry for
 SCTP:</t>
-<t>Error Cause Codes</t>
 <table>
+<name>New entry in Error Cause Codes registry</name>
 <thead>
 <tr><th>Value</th> <th>Cause Code                                           </th> <th>Reference</th></tr>
 </thead>
