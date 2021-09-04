@@ -10,14 +10,14 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04-to-be"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04"
      updates="6951"
      version="3">
 
 <front>
 <title abbrev='Considerations for SCTP over UDP'>
 Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
@@ -39,11 +39,11 @@ Additional Considerations for UDP Encapsulation of Stream Control Transmission P
 <organization>Netflix, Inc.</organization>
 <address>
     <postal>
-        <street></street>
-        <city>Chapin</city>
-        <region>SC</region>
-        <code>29036</code>
-        <country>US</country>
+        <street>2455 Heritage Green Ave</street>
+        <city>Davenport</city>
+        <region>FL</region>
+        <code>33837</code>
+        <country>United States</country>
     </postal>
     <email>randall@lakerest.net</email>
 </address>
