@@ -10,14 +10,14 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05-to-be"
      updates="6951"
      version="3">
 
 <front>
 <title abbrev='Considerations for SCTP over UDP'>
 Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-04"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05-to-be"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
