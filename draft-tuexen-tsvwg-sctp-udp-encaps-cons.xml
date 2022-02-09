@@ -102,18 +102,18 @@ packet are the UDP destination port and UDP source port of the received
 packet.</t>
 </li>
 <li>
-<t>If the receive packet was not encapsulated in UDP, the response packet
+<t>If the received packet was not encapsulated in UDP, the response packet
 MUST NOT be encapsulated in UDP.</t>
 </li>
 </ol>
-<t>Please not that in these cases a check of the of the verification tag is not
+<t>Please note that in these cases a check of the verification tag is not
 possible.</t>
 </section>
 
 <section>
 <name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Associations</name>
 <t>SCTP packets containing an INIT chunk have the verification tag 0 in
-the common header. Therefore the verification can't be checked.</t>
+the common header. Therefore the verification tag can't be checked.</t>
 <t>The following rules apply when processing the received packet:</t>
 <ol>
 <li><t>The remote UDP encapsulation port for the source address of the received
