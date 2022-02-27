@@ -10,14 +10,14 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05-to-be"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05"
      updates="6951"
      version="3">
 
 <front>
 <title abbrev='Considerations for SCTP over UDP'>
 Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-05"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
@@ -54,10 +54,10 @@ Additional Considerations for UDP Encapsulation of Stream Control Transmission P
 <abstract>
 <t>RFC 6951 specifies the UDP encapsulation of SCTP packets.
 The described handling of received packets requires the check of the
-verification tag. However, RFC 6951 misses a specification for the
+verification tag. However, RFC 6951 misses a specification of the
 handling of received packets for which this check is not possible.</t>
 <t>This document updates RFC 6951 by specifying the handling of received
-packets where the verification tag can not be checked.</t>
+packets for which the verification tag can not be checked.</t>
 </abstract>
 </front>
 
@@ -66,7 +66,7 @@ packets where the verification tag can not be checked.</t>
 <name>Introduction</name>
 <t><xref target="RFC6951"/> specifies the UDP encapsulation of SCTP packets.
 To be able to adopt automatically to changes of the remote UDP encapsulation
-port number, it is updated automatically when processing received packets.
+port number, it is updated when processing received packets.
 This includes automatic enabling and disabling of UDP encapsulation.</t>
 <t>Section 5.4 of <xref target="RFC6951"/> describes the processing of 
 received packets and requires the check of the verification tag before
