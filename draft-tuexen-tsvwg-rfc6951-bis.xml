@@ -77,9 +77,8 @@ UDP packets.
 SCTP, as defined in <xref target='RFC4960'/>, runs directly over IPv4 or IPv6.
 There are two main reasons for encapsulating SCTP packets:</t>
 <ul>
-<li><t>To allow SCTP traffic to pass through legacy NATs, which do not provide
-native SCTP support as specified in <xref target='BEHAVE'/> and
-<xref target='NATSUPP'/>.</t></li>
+<li><t>To allow SCTP traffic to pass through NATs, which do not provide
+native SCTP support.</t></li>
 <li><t>To allow SCTP to be implemented on hosts that do not provide direct
 access to the IP layer. In particular, applications can use their own
 SCTP implementation if the operating system does not provide one.</t></li>
@@ -125,9 +124,8 @@ NAT traversal, described in <xref target='emb_addrs'/>.</t>
 </section>
 
 <section title='Legacy NAT Traversal'>
-<t>Using UDP encapsulation allows SCTP communication when
-traversing legacy NATs (i.e, those NATs not supporting SCTP as described in
-<xref target='BEHAVE'/> and <xref target='NATSUPP'/>).
+<t>Using UDP encapsulation allows SCTP communication when traversing NATs not
+supporting SCTP.
 For single-homed associations, IP addresses <bcp14>MUST NOT</bcp14> be listed in
 the INIT and INIT-ACK chunks.
 To use multiple addresses, the dynamic address reconfiguration extension
@@ -146,11 +144,10 @@ These can keep the NAT state alive.</t>
 <section title='Unilateral Self-Address Fixing (UNSAF) Considerations'>
 <t>As <xref target='RFC3424'/> requires a limited scope,
 this document only covers SCTP endpoints dealing with legacy constraints
-as described in <xref target='use_cases'/>. It doesn't cover generic tunneling
-endpoints.</t>
+as described in <xref target='use_cases'/>.
+It doesn't cover generic tunneling endpoints.</t>
 <t>Obviously, the exit strategy is to use hosts supporting SCTP natively and
-middleboxes supporting SCTP as specified in
-<xref target='BEHAVE'/> and <xref target='NATSUPP'/>.</t>
+middleboxes supporting SCTP.</t>
 </section>
 
 <section title='SCTP over UDP'>
@@ -462,62 +459,6 @@ for their invaluable comments.</t>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6335.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6458.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6936.xml"/>
-<!-- draft-ietf-behave-sctpnat-08: I-D Exists --> 
-<reference anchor="BEHAVE"><front><title>Stream Control
-Transmission Protocol (SCTP) Network Address Translation</title><author
-								  initials="R"
-								  surname="Stewart"
-fullname="Randall Stewart"><organization/></author><author initials="M"
-						     surname="Tuexen"
-fullname="Michael Tuexen"><organization/></author><author initials="I"
-						    surname="Ruengeler"
-fullname="Irene Ruengeler"><organization/></author><date month="February"
-						     day="25"
-						     year="2013"/><abstract><t>Stream
-Control Transmission Protocol [RFC4960] provides a reliable communications
-channel between two end-hosts in many ways similar to TCP [RFC0793].  With the
-widespread deployment of Network Address Translators (NAT), specialized code
-has been added to NAT for TCP that allows multiple hosts to reside behind a NAT
-and yet use only a single globally unique IPv4 address, even when two hosts
-(behind a NAT) choose the same port numbers for their connection.  This
-additional code is sometimes classified as Network Address and Port Translation
-or NAPT.  To date, specialized code for SCTP has NOT yet been added to most
-NATs so that only pure NAT is available.  The end result of this is that only
-one SCTP capable host can be behind a NAT.  This document describes an SCTP
-specific variant of NAT which provides similar features of NAPT in the single
-point and multi-point traversal scenario.</t></abstract></front>
-
-<seriesInfo name="Work in" value="Progress"/>
-
-</reference>
-<!-- draft-ietf-tsvwg-natsuppt-05: I-D Exists -->
-<reference anchor="NATSUPP"><front><title>Stream Control
-Transmission Protocol (SCTP) Network Address Translation Support</title><author
-									  initials="R"
-									  surname="Stewart"
-fullname="Randall Stewart"><organization/></author><author initials="M"
-						     surname="Tuexen"
-fullname="Michael Tuexen"><organization/></author><author initials="I"
-						    surname="Ruengeler"
-fullname="Irene Ruengeler"><organization/></author><date month="February"
-						     day="25"
-						     year="2013"/><abstract><t>Stream
-Control Transmission Protocol [RFC4960] provides a reliable communications
-channel between two end-hosts in many ways similar to TCP [RFC0793].  With the
-widespread deployment of Network Address Translators (NAT), specialized code
-has been added to NAT for TCP that allows multiple hosts to reside behind a NAT
-and yet use only a single globally unique IPv4 address, even when two hosts
-(behind a NAT) choose the same port numbers for their connection.  This
-additional code is sometimes classified as Network Address and Port Translation
-(NAPT).  To date, specialized code for SCTP has not yet been added to most NATs
-so that only pure NAT is available.  The end result of this is that only one
-SCTP capable host can be behind a NAT.  This document describes the protocol
-extensions required for the SCTP endpoints to help NATs provide similar
-features of NAPT in the single-point and multi-point traversal
-scenario.</t></abstract></front>
-
-<seriesInfo name="Work in" value="Progress"/>
-</reference>
 
 </references>
 </back>
