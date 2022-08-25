@@ -74,7 +74,7 @@ endpoints.</t>
 <section anchor='intro' title='Introduction'>
 <t>This document describes a simple method of encapsulating SCTP packets into
 UDP packets.
-SCTP, as defined in <xref target='RFC4960'/>, runs directly over IPv4 or IPv6.
+SCTP, as defined in <xref target='RFC9260'/>, runs directly over IPv4 or IPv6.
 There are two main reasons for encapsulating SCTP packets:</t>
 <ul>
 <li><t>To allow SCTP traffic to pass through NATs, which do not provide
@@ -195,7 +195,7 @@ local or remote UDP encapsulation port number through APIs.</t>
 <t>To encapsulate an SCTP packet, a UDP header
 as defined in <xref target='RFC0768'/> is inserted between
 the IP header as defined in <xref target='RFC0791'/>
-and the SCTP common header as defined in <xref target='RFC4960'/>.</t>
+and the SCTP common header as defined in <xref target='RFC9260'/>.</t>
 <t><xref target='sctp_udp_ipv4'/> shows the packet
 format of an encapsulated SCTP packet when IPv4 is
 used.</t>
@@ -221,7 +221,7 @@ used.</t>
 </artwork>
 </figure>
 <t>The packet format for an encapsulated SCTP packet when using
-IPv6 as defined in <xref target='RFC2460'/> is shown in
+IPv6 as defined in <xref target='RFC8200'/> is shown in
 <xref target='sctp_upd_ipv6'/>.
 Please note that the number m of IPv6 extension headers can be 0.</t>
 <figure title='An SCTP/UDP/IPv6 Packet'
@@ -266,7 +266,7 @@ the UDP header.</t>
 <t>The SCTP checksum <bcp14>MUST</bcp14> be computed for IPv4 and IPv6, and the
 UDP checksum <bcp14>SHOULD</bcp14> be computed for IPv4 and IPv6.
 (See <xref target='RFC0768'/> regarding IPv4;
-see <xref target='RFC2460'/> and <xref target='RFC6936'/> regarding IPv6.)
+see <xref target='RFC8200'/> and <xref target='RFC6936'/> regarding IPv6.)
 
 Although UDP with a zero checksum over IPv6 is allowed under certain
 constraints <xref target='RFC6936'/>, this document does not specify mechanisms
@@ -407,7 +407,7 @@ and marked TCP port 9899 as "Reserved".</t>
 <section title='Security Considerations'>
 <t>Encapsulating SCTP into UDP does not add any additional
 security considerations to the ones given in
-<xref target='RFC4960'/> and
+<xref target='RFC9260'/> and
 <xref target='RFC5061'/>.</t>
 <t>Firewalls inspecting SCTP packets need also to be aware of the encapsulation
 and apply corresponding rules to the encapsulated packets.</t>
@@ -417,7 +417,7 @@ a particular SCTP association.
 However, as specified in <xref target='decaps'/>, this requires the usage
 of one of the two negotiated verification tags.
 This protects against blind attackers the same way as described
-in <xref target='RFC4960'/> for SCTP over IPv4 or IPv6.
+in <xref target='RFC9260'/> for SCTP over IPv4 or IPv6.
 Non-blind attackers can affect SCTP association using the UDP encapsulation
 described in this document in the same way as SCTP associations not
 using the UDP encapsulation of SCTP described here.</t>
@@ -445,14 +445,14 @@ for their invaluable comments.</t>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.0791.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.0792.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2460.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4443.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4820.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4821.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4895.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4960.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5061.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8200.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9260.xml"/>
 </references>
 <references title='Informative References'>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3424.xml"/>
