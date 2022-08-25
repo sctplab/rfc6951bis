@@ -5,8 +5,8 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-rfc6951-bis-01"
-     obsoletes="4895"
+     docName="draft-tuexen-tsvwg-rfc6951-bis-02"
+     obsoletes="6951"
      version="3"
      tocDepth="4">
 
@@ -24,21 +24,22 @@ for End-Host to End-Host Communication
     <postal>
         <street>Stegerwaldstrasse 39</street>
         <city>48565 Steinfurt</city>
-        <country>DE</country>
+        <country>Germany</country>
     </postal>
     <email>tuexen@fh-muenster.de</email>
 </address>
 </author>
 
 <!-- ************** RANDALL STEWART ***************-->
-<author initials='R.' surname='Stewart' fullname='Randall R. Stewart'>
-<organization>Adara Networks</organization>
+<author initials="R." surname="Stewart" fullname="Randall R. Stewart">
+<organization>Netflix, Inc.</organization>
 <address>
     <postal>
-        <street></street>
-        <city>Chapin</city> <region>SC</region>
-        <code>29036</code>
-        <country>US</country>
+        <street>2455 Heritage Green Ave</street>
+        <city>Davenport</city>
+        <region>FL</region>
+        <code>33837</code>
+        <country>United States of America</country>
     </postal>
     <email>randall@lakerest.net</email>
 </address>
@@ -55,7 +56,7 @@ It can also be used to implement SCTP on hosts without directly accessing
 the IP layer, for example, implementing it as part of the application without
 requiring special privileges.</t>
 <t>Please note that this document only describes the functionality
-required within an SCTP stack to add on UDP encapsulation, providing
+needed within an SCTP stack to add on UDP encapsulation, providing
 only those mechanisms for two end-hosts to communicate with each
 other over UDP ports.
 In particular, it does not provide mechanisms to determine whether
@@ -88,10 +89,14 @@ that UDP does not perform.</t>
 </section>
 
 <section title='Conventions'>
-<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
-in this document are to be interpreted as described in
-<xref target='RFC2119'/>.</t>
+<t>The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>",
+"<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>",
+"<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>",
+"<bcp14>RECOMMENDED</bcp14>", "<bcp14>NOT RECOMMENDED</bcp14>",
+"<bcp14>MAY</bcp14>", and "<bcp14>OPTIONAL</bcp14>" in this document are to
+be interpreted as described in
+BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+they appear in all capitals, as shown here.</t>
 </section>
 
 <section title='Use Cases'
@@ -115,7 +120,7 @@ require any special privileges.</t>
 source address of outgoing packets needs to be controlled.
 This is not an issue if the SCTP stack can use all addresses configured
 at the IP layer as source addresses.
-However, it is an issue when also using the address management required for
+However, it is an issue when also using the address management needed for
 NAT traversal, described in <xref target='emb_addrs'/>.</t>
 </section>
 
@@ -123,15 +128,15 @@ NAT traversal, described in <xref target='emb_addrs'/>.</t>
 <t>Using UDP encapsulation allows SCTP communication when
 traversing legacy NATs (i.e, those NATs not supporting SCTP as described in
 <xref target='BEHAVE'/> and <xref target='NATSUPP'/>).
-For single-homed associations, IP addresses MUST NOT be listed in
+For single-homed associations, IP addresses <bcp14>MUST NOT</bcp14> be listed in
 the INIT and INIT-ACK chunks.
 To use multiple addresses, the dynamic address reconfiguration extension
-described in <xref target='RFC5061'/> MUST be used only with wildcard addresses
-in the ASCONF chunks (Address Configuration Change Chunks) in combination
-with <xref target='RFC4895'/>.</t>
+described in <xref target='RFC5061'/> <bcp14>MUST</bcp14> be used only with
+wildcard addresses in the ASCONF chunks (Address Configuration Change Chunks)
+in combination with <xref target='RFC4895'/>.</t>
 
 <t>For multihomed SCTP associations, the address management
-as described in <xref target='emb_addrs'/> MUST be performed.</t>
+as described in <xref target='emb_addrs'/> <bcp14>MUST</bcp14> be performed.</t>
 
 <t>SCTP sends periodic HEARTBEAT chunks on all idle paths.
 These can keep the NAT state alive.</t>
@@ -153,9 +158,10 @@ middleboxes supporting SCTP as specified in
          anchor='arch'>
 <t>UDP-encapsulated SCTP is normally communicated between SCTP stacks
 using the IANA-assigned UDP port number 9899 (sctp-tunneling) on both
-ends. There are circumstances where other ports may be used on either
+ends.
+There are circumstances where other ports <bcp14>MAY</bcp14> be used on either
 end: As stated earlier, implementations in the application space
-might be required to use ports other than the registered port. 
+might be need to use ports other than the registered port. 
 Since NAT boxes might change UDP port numbers, the receiver might observe other
 UDP port numbers than were used by the sender.
 Discovery of alternate ports is outside of the scope of this document,
@@ -165,7 +171,7 @@ of their potential use.</t>
 <t>Each SCTP stack uses a single local UDP encapsulation port number as
 the destination port for all its incoming SCTP packets.
 While the uniqueness of the local UDP encapsulation port number is not
-necessarily required for the protocol, this greatly simplifies implementation
+necessarily needed for the protocol, this greatly simplifies implementation
 design, since different ports for each address would require a sender
 implementation to choose the appropriate port while doing source address
 selection.
@@ -173,12 +179,14 @@ Using a single local UDP encapsulation port number per host is not possible
 if the SCTP stack is implemented as part of each application, there are multiple
 applications, and some of the applications want to use the same IP address.</t>
 
-<t>An SCTP implementation supporting UDP encapsulation MUST maintain a
-remote UDP encapsulation port number per destination address for each
-SCTP association. Again, because the remote stack may be using ports other
-than the well-known port, each port may be different from each stack.
-However, because of remapping of ports by NATs, the remote ports
-associated with different remote IP addresses may not be identical,
+<t>An SCTP implementation supporting UDP encapsulation <bcp14>MUST</bcp14>
+maintain a remote UDP encapsulation port number per destination address for each
+SCTP association.
+Again, because the remote stack <bcp14>MAY</bcp14> be using ports other
+than the well-known port, each port <bcp14>MAY</bcp14> be different from each
+stack.
+However, because of remapping of ports by NATs, the remote ports associated
+with different remote IP addresses <bcp14>MAY</bcp14> not be identical,
 even if they are associated with the same stack.</t>
 
 <t>Implementation note: Because the well-known port might not be used,
@@ -249,25 +257,25 @@ Please note that the number m of IPv6 extension headers can be 0.</t>
 </section>
 
 <section title='Encapsulation Procedure'>
-<t>Within the UDP header, the source port MUST be the local UDP
-encapsulation port number of the SCTP stack, and the destination port MUST
-be the remote UDP encapsulation port number maintained for the association and
-the destination address to which the packet is sent
+<t>Within the UDP header, the source port <bcp14>MUST</bcp14> be the local UDP
+encapsulation port number of the SCTP stack, and the destination port
+<bcp14>MUST</bcp14> be the remote UDP encapsulation port number maintained for
+the association and the destination address to which the packet is sent
 (see <xref target='arch'/>).</t>
 <t>Because the SCTP packet is the UDP payload, the length of the
-UDP packet MUST be the length of the SCTP packet plus the size of
+UDP packet <bcp14>MUST</bcp14> be the length of the SCTP packet plus the size of
 the UDP header.</t>
 
-<t>The SCTP checksum MUST be computed for IPv4 and IPv6, and the UDP checksum
-SHOULD be computed for IPv4 and IPv6.
+<t>The SCTP checksum <bcp14>MUST</bcp14> be computed for IPv4 and IPv6, and the
+UDP checksum <bcp14>SHOULD</bcp14> be computed for IPv4 and IPv6.
 (See <xref target='RFC0768'/> regarding IPv4;
 see <xref target='RFC2460'/> and <xref target='RFC6936'/> regarding IPv6.)
 
 Although UDP with a zero checksum over IPv6 is allowed under certain
-constraints <xref target='RFC6936'/>, this document does not
-specify mechanisms for this mode.
-Deployed support may be limited; also, at the time of writing, the use of a zero
-UDP checksum would be counter to the goal of legacy NAT traversal.</t>
+constraints <xref target='RFC6936'/>, this document does not specify mechanisms
+for this mode.
+Deployed support might be limited; also, at the time of writing, the use of a
+zero UDP checksum would be counter to the goal of legacy NAT traversal.</t>
 </section>
 
 <section title='Decapsulation Procedure'
@@ -277,12 +285,12 @@ is removed.
 Then, the generic lookup is performed, as done by an SCTP stack whenever a
 packet is received, to find the association for the received SCTP packet.
 After finding the SCTP association (which includes checking the verification
-tag), the UDP source port MUST be stored as the encapsulation port for
-the destination address the SCTP packet is received from
+tag), the UDP source port <bcp14>MUST</bcp14> be stored as the encapsulation
+port for the destination address the SCTP packet is received from
 (see <xref target='arch'/>).</t>
 <t>When a non-encapsulated SCTP packet is received by the SCTP stack,
 the encapsulation of outgoing packets belonging to the same association and
-the corresponding destination address MUST be disabled.</t>
+the corresponding destination address <bcp14>MUST</bcp14> be disabled.</t>
 </section>
 
 <section title='ICMP Considerations'
@@ -292,20 +300,20 @@ be enough bytes in the payload to identify the SCTP association
 that the SCTP packet triggering the ICMP or ICMPv6 packet belongs to.
 If a received ICMP or ICMPv6 packet cannot be related to a specific
 SCTP association or the verification tag cannot be verified,
-it MUST be discarded silently.
-In particular, this means that the SCTP stack MUST NOT rely on receiving
-ICMP or ICMPv6 messages.
+it <bcp14>MUST</bcp14> be discarded silently.
+In particular, this means that the SCTP stack <bcp14>MUST NOT</bcp14> rely on
+receiving ICMP or ICMPv6 messages.
 Implementation constraints could prevent processing received
 ICMP or ICMPv6 messages.</t>
 <t>If received ICMP or ICMPv6 messages are processed, the following mapping
-SHOULD apply:</t>
+<bcp14>SHOULD</bcp14> apply:</t>
 <ol>
 <li><t>ICMP messages with type 'Destination Unreachable' and code
-'Port Unreachable' SHOULD be treated as ICMP messages
+'Port Unreachable' <bcp14>SHOULD</bcp14> be treated as ICMP messages
 with type 'Destination Unreachable' and code 'Protocol Unreachable'.
 See <xref target='RFC0792'/> for more details.</t></li>
 <li><t>ICMPv6 messages with type 'Destination Unreachable' and code
-'Port Unreachable' SHOULD be treated as ICMPv6 messages with type
+'Port Unreachable' <bcp14>SHOULD</bcp14> be treated as ICMPv6 messages with type
 'Parameter Problem' and code 'unrecognized Next Header type encountered'.
 See <xref target='RFC4443'/> for more details.</t></li>
 </ol>
@@ -313,39 +321,41 @@ See <xref target='RFC4443'/> for more details.</t></li>
 
 <section title='Path MTU Considerations'>
 <t>If an SCTP endpoint starts to encapsulate the packets of a path,
-it MUST decrease the Path MTU of that path by the size of the UDP header.
-If it stops encapsulating them, the Path MTU SHOULD be increased by
-the size of the UDP header.</t>
+it <bcp14>MUST</bcp14> decrease the Path MTU of that path by the size of the
+UDP header.
+If it stops encapsulating them, the Path MTU <bcp14>SHOULD</bcp14> be increased
+by the size of the UDP header.</t>
 <t>When performing Path MTU discovery as described in
 <xref target='RFC4820'/> and <xref target='RFC4821'/>,
-it MUST be taken into account that one cannot rely on the feedback
-provided by ICMP or ICMPv6 due to the limitation laid out in
+it <bcp14>MUST</bcp14> be taken into account that one cannot rely on the
+feedback provided by ICMP or ICMPv6 due to the limitation laid out in
 <xref target='icmp_cons'/>.</t>
 <t>If the implementation does not allow control of the Don't Fragment
 (DF) bit contained in the IPv4 header, then Path MTU discovery can't be used.
-In this case, an implementation-specific value should be used instead.</t>
+In this case, an implementation-specific value <bcp14>SHOULD</bcp14> be
+used instead.</t>
 </section>
 
 <section title='Handling of Embedded IP Addresses'
          anchor='emb_addrs'>
 <t>When using UDP encapsulation for legacy NAT traversal, IP addresses that
-might require translation MUST NOT be put into any SCTP packet.</t>
+might require translation <bcp14>MUST NOT</bcp14> be put into any SCTP packet.</t>
 <t>This means that a multihomed SCTP association is set up initially as a
 single-homed one, and the protocol extension <xref target='RFC5061'/>
 in combination with <xref target='RFC4895'/> is used to add the other
 addresses. Only wildcard addresses are put into the SCTP packet.</t>
 <t>When addresses are changed during the lifetime of an association,
-the protocol extension <xref target='RFC5061'/> MUST be used with wildcard
-addresses only.
-If an SCTP endpoint receives an ABORT with the T-bit set, it MAY
+the protocol extension <xref target='RFC5061'/> <bcp14>MUST</bcp14> be used
+with wildcard addresses only.
+If an SCTP endpoint receives an ABORT with the T-bit set, it <bcp14>MAY</bcp14>
 use this as an indication that the addresses seen by the peer might
 have changed.</t>
 </section>
 
 <section title="Explicit Congestion Notification (ECN) Considerations">
 <t>If the implementation supports the sending and receiving of the
-ECN bits for the IP protocols being used by an SCTP association,
-the ECN bits MUST NOT be changed during sending and receiving.</t>
+ECN bits for the IP protocols being used by an SCTP association, the ECN bits
+<bcp14>MUST NOT</bcp14> be changed during sending and receiving.</t>
 </section>
 </section>
 
@@ -363,7 +373,6 @@ is extended by supporting one new read/write socket option.</t>
                 (SCTP_REMOTE_UDP_ENCAPS_PORT)'>
 <t>This socket option can be used to set and retrieve the UDP encapsulation
 port number. This allows an endpoint to encapsulate initial packets.</t>
-<figure>
 <artwork>
 struct sctp_udpencaps {
   sctp_assoc_t sue_assoc_id;
@@ -371,11 +380,10 @@ struct sctp_udpencaps {
   uint16_t sue_port;
 };
 </artwork>
-</figure>
 <dl newline="true">
 <dt>sue_assoc_id:</dt>
 <dd><t>This parameter is ignored for one-to-one style sockets.
-For one-to-many style sockets, the application may fill in an association
+For one-to-many style sockets, the application might fill in an association
 identifier or SCTP_FUTURE_ASSOC for this query.
 It is an error to use SCTP_{CURRENT|ALL}_ASSOC in sue_assoc_id.</t></dd>
 <dt>sue_address:</dt>
@@ -404,7 +412,7 @@ and marked TCP port 9899 as "Reserved".</t>
 security considerations to the ones given in
 <xref target='RFC4960'/> and
 <xref target='RFC5061'/>.</t>
-<t>Firewalls inspecting SCTP packets must also be aware of the encapsulation
+<t>Firewalls inspecting SCTP packets need also to be aware of the encapsulation
 and apply corresponding rules to the encapsulated packets.</t>
 <t>An attacker might send a malicious UDP packet towards an SCTP endpoint
 to change the encapsulation port for a single remote address of
@@ -420,15 +428,16 @@ using the UDP encapsulation of SCTP described here.</t>
 
 <section anchor='acks' title='Acknowledgments'>
 <t>The authors wish to thank
-Stewart Bryant,
-Dave Crocker,
-Gorry Fairhurst,
-Tero Kivinen,
-Barry Leiba,
-Pete Resnick,
-Martin Stiemerling,
-Irene Rüngeler,
-and Dan Wing
+<contact fullname="Stewart Bryant"/>,
+<contact fullname="Dave Crocker"/>,
+<contact fullname="Gorry Fairhurst"/>,
+<contact fullname="Tero Kivinen"/>,
+<contact fullname="Barry Leiba"/>,
+<contact fullname="Pete Resnick"/>,
+<contact fullname="Martin Stiemerling"/>,
+<contact fullname="Irene Rüngeler"/>,
+and
+<contact fullname="Dan Wing"/>
 for their invaluable comments.</t>
 </section>
 </middle>
@@ -446,6 +455,7 @@ for their invaluable comments.</t>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4895.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4960.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5061.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
 </references>
 <references title='Informative References'>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3424.xml"/>
