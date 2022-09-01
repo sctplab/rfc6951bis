@@ -81,29 +81,32 @@ packets is 0.</t>
 
 <section anchor='conventions'>
 <name>Conventions</name>
-<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-"OPTIONAL" in this document are to be interpreted as described in
-BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>  when,
-and only when, they appear in all capitals, as shown here.</t>
+<t>The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>",
+"<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>",
+"<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>",
+"<bcp14>RECOMMENDED</bcp14>", "<bcp14>NOT RECOMMENDED</bcp14>",
+"<bcp14>MAY</bcp14>", and "<bcp14>OPTIONAL</bcp14>" in this document are to
+be interpreted as described in
+BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+they appear in all capitals, as shown here.</t>
 </section>
 
 <section>
 <name>Handling of Out of the Blue Packets</name>
 <t>If the processing of an out of the blue packet requires the sending
 of a packet in response according to the rules specified in Section 8.4 of
-<xref target="RFC4960"/>, the following rules apply:</t>
+<xref target="RFC9260"/>, the following rules apply:</t>
 <ol>
 <li>
 <t>If the received packet was encapsulated in UDP, the response packets
-MUST also be encapsulated in UDP.
+<bcp14>MUST</bcp14> also be encapsulated in UDP.
 The UDP source port and UDP destination port used for sending the response
 packet are the UDP destination port and UDP source port of the received
 packet.</t>
 </li>
 <li>
 <t>If the received packet was not encapsulated in UDP, the response packet
-MUST NOT be encapsulated in UDP.</t>
+<bcp14>MUST NOT</bcp14> be encapsulated in UDP.</t>
 </li>
 </ol>
 <t>Please note that in these cases a check of the verification tag is not
@@ -117,42 +120,48 @@ the common header. Therefore the verification tag can't be checked.</t>
 <t>The following rules apply when processing the received packet:</t>
 <ol>
 <li><t>The remote UDP encapsulation port for the source address of the received
-SCTP packet MUST NOT be updated if the encapsulation of outgoing packets is
-enabled and the received SCTP packet is encapsulated.</t></li>
+SCTP packet <bcp14>MUST NOT</bcp14> be updated if the encapsulation of outgoing
+packets is enabled and the received SCTP packet is encapsulated.</t></li>
 <li><t>The UDP encapsulation for outgoing packets towards the source address
-of the received SCTP packet MUST NOT be enabled, if it is disabled and the
-received SCTP packet is encapsulated.</t></li>
+of the received SCTP packet <bcp14>MUST NOT</bcp14> be enabled, if it is
+disabled and the received SCTP packet is encapsulated.</t></li>
 <li><t>The UDP encapsulation for outgoing packets towards the source address
-of the received SCTP packet MUST NOT be disabled, if it is enabled
-and the received SCTP packet is not encapsulated.</t></li>
+of the received SCTP packet <bcp14>MUST NOT</bcp14> be disabled, if it is
+enabled and the received SCTP packet is not encapsulated.</t></li>
 <li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is disabled and the received SCTP packet is
-encapsulated, an SCTP packet containing an ABORT chunk MUST be sent.
-The ABORT chunk MAY include the error cause defined below indicating an
-"Restart of an Association with New Encapsulation Port".
-This packet containing the ABORT chunk MUST be encapsulated in UDP.
+encapsulated, an SCTP packet containing an ABORT chunk <bcp14>MUST</bcp14> be
+sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined below
+indicating an "Restart of an Association with New Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST</bcp14> be encapsulated in
+UDP.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
 UDP source port of the received packet containing the INIT chunk.</t></li>
 <li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is disabled and the received SCTP packet is
-not encapsulated, the processing defined in <xref target="RFC4960"/>
-MUST be performed. If a packet is sent in response, it MUST NOT be
-encapsulated.</t></li>
+not encapsulated, the processing defined in <xref target="RFC9260"/>
+<bcp14>MUST</bcp14> be performed.
+If a packet is sent in response, it MUST NOT be encapsulated.</t></li>
 <li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is not
-encapsulated, an SCTP packet containing an ABORT chunk MUST be sent.
-The ABORT chunk MAY include the error cause defined below indicating an
-"Restart of an Association with New Encapsulation Port".
-This packet containing the ABORT chunk MUST NOT be encapsulated in UDP.</t></li>
+encapsulated, an SCTP packet containing an ABORT chunk <bcp14>MUST</bcp14> be
+sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined below
+indicating an "Restart of an Association with New Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST NOT</bcp14> be encapsulated
+in UDP.</t></li>
 <li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is
 encapsulated, but the UDP source port of the received SCTP packet is not
 equal to the remote UDP encapsulation port for the source address of the
-received SCTP packet, an SCTP packet containing an ABORT chunk MUST be sent.
-The ABORT chunk MAY include the error cause defined below indicating an
-"Restart of an Association with New Encapsulation Port".
-This packet containing the ABORT chunk MUST be encapsulated in UDP.
+received SCTP packet, an SCTP packet containing an ABORT chunk
+<bcp14>MUST</bcp14> be sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined below
+indicating an "Restart of an Association with New Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST</bcp14> be encapsulated in
+UDP.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
 UDP source port of the received packet containing the INIT chunk.</t></li>
@@ -160,9 +169,9 @@ UDP source port of the received packet containing the INIT chunk.</t></li>
 of the received SCTP packet is enabled and the received SCTP packet is
 encapsulated and the UDP source port of the received SCTP packet is
 equal to the remote UDP encapsulation port for the source address of the
-received SCTP packet, the processing defined in <xref target="RFC4960"/>
-MUST be performed. If a packet is sent in response, it MUST be
-encapsulated.
+received SCTP packet, the processing defined in <xref target="RFC9260"/>
+<bcp14>MUST</bcp14> be performed.
+If a packet is sent in response, it <bcp14>MUST</bcp14> be encapsulated.
 The UDP source port and UDP destination port used for sending the
 packet containing the ABORT chunk are the UDP destination port and
 UDP source port of the received packet containing the INIT chunk.</t></li>
@@ -192,7 +201,7 @@ IANA is requested to assign the value 14 for this cause code.</t>
 <dt>Cause Length: 2 bytes (unsigned integer)</dt>
 <dd>
 <t>This field holds the length in bytes of the error cause;
-the value MUST be 8.</t>
+the value <bcp14>MUST</bcp14> be 8.</t>
 </dd>
 <dt>Current Encapsulation Port: 2 bytes (unsigned integer)</dt>
 <dd>
@@ -216,8 +225,9 @@ this field is 0.</t>
 <section>
 <name>Middlebox Considerations</name>
 <t>Middleboxes often use different timeouts for UDP based flows than
-for other flows. Therefore the HEARTBEAT.Interval parameter SHOULD be
-lowered to 15 seconds when UDP encapsulation is used.</t>
+for other flows. Therefore the HEARTBEAT.Interval parameter
+<bcp14>SHOULD</bcp14> be lowered to 15 seconds when UDP encapsulation is
+used.</t>
 </section>
 
 <section>
@@ -249,9 +259,8 @@ SCTP:</t>
 <t>However, not following the procedures given in this document might allow
 an attacker to take over SCTP associations. The attacker needs only to
 share the IP address of an existing SCTP association.</t>
-<t>It should also be noted that if firewalls will be applied at the
-SCTP association level they have to take the UDP encapsulation into
-account.</t>
+<t>If firewalls will be applied at the SCTP association level, they have to
+take the UDP encapsulation into account.</t>
 </section>
 
 <section>
@@ -273,9 +282,9 @@ The views expressed are solely those of the author(s).</t>
 <references>
 <name>Normative References</name>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4960.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6951.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9260.xml"/>
 </references>
 </back>
 </rfc>
