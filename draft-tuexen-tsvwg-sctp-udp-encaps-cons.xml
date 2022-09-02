@@ -184,7 +184,7 @@ UDP source port of the received packet containing the INIT chunk.</t></li>
 "Restart of an Association with New Encapsulation Port" is defined by the
 following figure.</t>
 <figure>
-<name>Restart of an Association with New Encapsulation Port error cause</name>
+<name>Restart of an Association with New Encapsulation Port Error Cause</name>
 <artwork align="left">
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
