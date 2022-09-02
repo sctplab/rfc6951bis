@@ -80,8 +80,9 @@ There are two main reasons for encapsulating SCTP packets:</t>
 <li><t>To allow SCTP traffic to pass through NATs, which do not provide
 native SCTP support.</t></li>
 <li><t>To allow SCTP to be implemented on hosts that do not provide direct
-access to the IP layer. In particular, applications can use their own
-SCTP implementation if the operating system does not provide one.</t></li>
+access to the IP layer.
+In particular, applications can use their own SCTP implementation if the
+operating system does not provide one.</t></li>
 </ul>
 <t>SCTP provides the necessary congestion control and reliability service
 that UDP does not perform.</t>
@@ -103,13 +104,12 @@ they appear in all capitals, as shown here.</t>
 <t>This section discusses two important use cases for encapsulating
 SCTP into UDP.</t>
 <section title='Portable SCTP Implementations'>
-<t>Some operating systems support SCTP natively. For other
-operating systems, implementations are available but require
-special privileges to install and/or use them. In some cases,
- a kernel implementation might not be available at all. When providing
-an SCTP implementation as part of a user process, most operating
-systems require special privileges to access the IP layer
-directly.</t>
+<t>Some operating systems support SCTP natively.
+For other operating systems, implementations are available but require
+special privileges to install and/or use them.
+In some cases, a kernel implementation might not be available at all.
+When providing an SCTP implementation as part of a user process, most operating
+systems require special privileges to access the IP layer directly.</t>
 
 <t>Using UDP encapsulation makes it possible to provide an
 SCTP implementation as part of a user process that does not
@@ -158,7 +158,7 @@ using the IANA-assigned UDP port number 9899 (sctp-tunneling) on both
 ends.
 There are circumstances where other ports <bcp14>MAY</bcp14> be used on either
 end: As stated earlier, implementations in the application space
-might be need to use ports other than the registered port. 
+might be need to use ports other than the registered port.
 Since NAT boxes might change UDP port numbers, the receiver might observe other
 UDP port numbers than were used by the sender.
 Discovery of alternate ports is outside of the scope of this document,
@@ -340,7 +340,8 @@ might require translation <bcp14>MUST NOT</bcp14> be put into any SCTP packet.</
 <t>This means that a multihomed SCTP association is set up initially as a
 single-homed one, and the protocol extension <xref target='RFC5061'/>
 in combination with <xref target='RFC4895'/> is used to add the other
-addresses. Only wildcard addresses are put into the SCTP packet.</t>
+addresses.
+Only wildcard addresses are put into the SCTP packet.</t>
 <t>When addresses are changed during the lifetime of an association,
 the protocol extension <xref target='RFC5061'/> <bcp14>MUST</bcp14> be used
 with wildcard addresses only.
@@ -369,7 +370,8 @@ is extended by supporting one new read/write socket option.</t>
 <section title='Get or Set the Remote UDP Encapsulation Port Number
                 (SCTP_REMOTE_UDP_ENCAPS_PORT)'>
 <t>This socket option can be used to set and retrieve the UDP encapsulation
-port number. This allows an endpoint to encapsulate initial packets.</t>
+port number.
+This allows an endpoint to encapsulate initial packets.</t>
 <artwork>
 struct sctp_udpencaps {
   sctp_assoc_t sue_assoc_id;
@@ -384,12 +386,12 @@ For one-to-many style sockets, the application might fill in an association
 identifier or SCTP_FUTURE_ASSOC for this query.
 It is an error to use SCTP_{CURRENT|ALL}_ASSOC in sue_assoc_id.</t></dd>
 <dt>sue_address:</dt>
-<dd><t>This specifies which address is of interest. If a wildcard address
-is provided, it applies only to future paths.</t></dd>
+<dd><t>This specifies which address is of interest.
+If a wildcard address is provided, it applies only to future paths.</t></dd>
 <dt>sue_port:</dt>
 <dd><t>The UDP port number in network byte order; used as the destination port
-number for UDP encapsulation. Providing a value of 0 disables
-UDP encapsulation.</t></dd>
+number for UDP encapsulation.
+Providing a value of 0 disables UDP encapsulation.</t></dd>
 </dl>
 </section>
 </section>
