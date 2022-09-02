@@ -16,7 +16,8 @@
 
 <front>
 <title abbrev='Considerations for SCTP over UDP'>
-Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets</title>
+Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
+</title>
 <seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-06-to-be"/>
 
 
