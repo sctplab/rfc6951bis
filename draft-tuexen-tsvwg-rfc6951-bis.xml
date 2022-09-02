@@ -10,6 +10,18 @@
      version="3"
      tocDepth="4">
 
+<!--
+ToDo
+ * Integrate ACK section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate IANA considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate Middlebox considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate OOTB handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate INIT handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Revisit Normative/Informative references
+ * Submit
+-->
+
 <front>
 <title abbrev='UDP Encapsulation of SCTP Packets'>
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
@@ -326,20 +338,18 @@ See <xref target='RFC4443'/> for more details.</t></li>
 
 <section>
 <name>Path MTU Considerations</name>
-<t>If an SCTP endpoint starts to encapsulate the packets of a path,
-it <bcp14>MUST</bcp14> decrease the Path MTU of that path by the size of the
+<t>If an SCTP endpoint starts to encapsulate the packets of a path, it
+<bcp14>MUST</bcp14> decrease the Path MTU of that path by the size of the
 UDP header.
 If it stops encapsulating them, the Path MTU <bcp14>SHOULD</bcp14> be increased
 by the size of the UDP header.</t>
-<t>When performing Path MTU discovery as described in
-<xref target='RFC4820'/> and <xref target='RFC4821'/>,
-it <bcp14>MUST</bcp14> be taken into account that one cannot rely on the
-feedback provided by ICMP or ICMPv6 due to the limitation laid out in
-<xref target='icmp_cons'/>.</t>
-<t>If the implementation does not allow control of the Don't Fragment
-(DF) bit contained in the IPv4 header, then Path MTU discovery can't be used.
-In this case, an implementation-specific value <bcp14>SHOULD</bcp14> be
-used instead.</t>
+<t>Since one cannot rely on the feedback provided by ICMP or ICMPv6 due to the
+limitation laid out in <xref target='icmp_cons'/>, <xref target='RFC8899'/>
+<bcp14>MUST</bcp14> be followed, when performing Path MTU discovery.</t>
+<t>If the implementation does not allow control of the Don't Fragment (DF) bit
+contained in the IPv4 header, then Path MTU discovery can't be used.
+In this case, an implementation-specific value <bcp14>SHOULD</bcp14> be used
+instead.</t>
 </section>
 
 <section anchor='emb_addrs'>
@@ -464,12 +474,11 @@ for their invaluable comments.</t>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.0792.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4443.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4820.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4821.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4895.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5061.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8200.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8899.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9260.xml"/>
 </references>
 <references>
