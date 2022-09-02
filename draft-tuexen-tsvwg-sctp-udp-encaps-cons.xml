@@ -54,8 +54,9 @@ Additional Considerations for UDP Encapsulation of Stream Control Transmission P
 <abstract>
 <t>RFC 6951 specifies the UDP encapsulation of SCTP packets.
 The described handling of received packets requires the check of the
-verification tag. However, RFC 6951 misses a specification of the
-handling of received packets for which this check is not possible.</t>
+verification tag.
+However, RFC 6951 misses a specification of the handling of received packets
+for which this check is not possible.</t>
 <t>This document updates RFC 6951 by specifying the handling of received
 packets for which the verification tag can not be checked.</t>
 </abstract>
@@ -116,7 +117,8 @@ possible.</t>
 <section>
 <name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Associations</name>
 <t>SCTP packets containing an INIT chunk have the verification tag 0 in
-the common header. Therefore the verification tag can't be checked.</t>
+the common header.
+Therefore the verification tag can't be checked.</t>
 <t>The following rules apply when processing the received packet:</t>
 <ol>
 <li><t>The remote UDP encapsulation port for the source address of the received
@@ -225,9 +227,9 @@ this field is 0.</t>
 <section>
 <name>Middlebox Considerations</name>
 <t>Middleboxes often use different timeouts for UDP based flows than
-for other flows. Therefore the HEARTBEAT.Interval parameter
-<bcp14>SHOULD</bcp14> be lowered to 15 seconds when UDP encapsulation is
-used.</t>
+for other flows.
+Therefore the HEARTBEAT.Interval parameter <bcp14>SHOULD</bcp14> be lowered to
+15 seconds when UDP encapsulation is used.</t>
 </section>
 
 <section>
@@ -257,8 +259,9 @@ SCTP:</t>
 <t>This document does not change the considerations given in
 <xref target="RFC6951"/>.</t>
 <t>However, not following the procedures given in this document might allow
-an attacker to take over SCTP associations. The attacker needs only to
-share the IP address of an existing SCTP association.</t>
+an attacker to take over SCTP associations.
+The attacker needs only to share the IP address of an existing
+SCTP association.</t>
 <t>If firewalls will be applied at the SCTP association level, they have to
 take the UDP encapsulation into account.</t>
 </section>
