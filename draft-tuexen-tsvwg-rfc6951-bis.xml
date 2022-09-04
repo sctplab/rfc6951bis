@@ -12,7 +12,6 @@
 
 <!--
 ToDo
- * Integrate ACK section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate IANA considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate Middlebox considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
@@ -446,22 +445,6 @@ Non-blind attackers can affect SCTP association using the UDP encapsulation
 described in this document in the same way as SCTP associations not
 using the UDP encapsulation of SCTP described here.</t>
 </section>
-
-<section anchor='acks'>
-<name>Acknowledgments</name>
-<t>The authors wish to thank
-<contact fullname="Stewart Bryant"/>,
-<contact fullname="Dave Crocker"/>,
-<contact fullname="Gorry Fairhurst"/>,
-<contact fullname="Tero Kivinen"/>,
-<contact fullname="Barry Leiba"/>,
-<contact fullname="Pete Resnick"/>,
-<contact fullname="Martin Stiemerling"/>,
-<contact fullname="Irene Rüngeler"/>,
-and
-<contact fullname="Dan Wing"/>
-for their invaluable comments.</t>
-</section>
 </middle>
 
 <back>
@@ -487,7 +470,33 @@ for their invaluable comments.</t>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6335.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6458.xml"/>
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6936.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6951.xml"/>
 </references>
 </references>
+
+<section  numbered='false'>
+<name>Acknowledgments</name>
+<t>The authors wish to thank
+<contact fullname="Stewart Bryant"/>,
+<contact fullname="Dave Crocker"/>,
+<contact fullname="Gorry Fairhurst"/>,
+<contact fullname="Tero Kivinen"/>,
+<contact fullname="Barry Leiba"/>,
+<contact fullname="Pete Resnick"/>,
+<contact fullname="Martin Stiemerling"/>,
+<contact fullname="Irene Rüngeler"/>,
+and
+<contact fullname="Dan Wing"/>
+for their invaluable comments on <xref target='RFC6951'/>.</t>
+<t>The authors wish to thank <contact fullname="Georgios Papastergiou"/> for
+the initial problem report resulting in the work on this document and
+<contact fullname="Irene Rüngeler"/> and
+<contact fullname="Felix Weinrank"/>
+for their invaluable comments on this document.</t>
+<t>Part of this work has received funding from the European Union's Horizon 2020
+research and innovation programme under grant agreement No. 644334 (NEAT).
+The views expressed are solely those of the author(s).</t>
+</section>
+
 </back>
 </rfc>
