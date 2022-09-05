@@ -417,13 +417,27 @@ Providing a value of 0 disables UDP encapsulation.</t></dd>
 
 <section>
 <name>IANA Considerations</name>
+<t>[NOTE to RFC-Editor: "RFCXXXX" is to be replaced by the RFC number you
+assign this document.]</t>
+<t>[NOTE to RFC-Editor: The requested values for the cause code are tentative
+and to be confirmed by IANA.]</t>
+<t>A new error cause code has to be assigned by IANA.
+This requires an additional line in the "Error Cause Codes" registry for
+SCTP:</t>
+<table>
+<name>New Entry in Error Cause Codes Registry</name>
+<thead>
+<tr><th>Value</th> <th>Cause Code                                           </th> <th>Reference</th></tr>
+</thead>
+<tbody>
+<tr><td>14   </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
+</tbody>
+</table>
 <t>This document refers to the already assigned UDP port 9899 (sctp-tunneling).
-IANA has updated this assignment to refer to this document.
-As per <xref target='RFC6335'/>, the Assignee is [IESG] and
-the Contact is [IETF_Chair].</t>
-<t>Please note that the TCP port 9899 (sctp-tunneling) assignment is not
-needed anymore, and IANA has removed this TCP port number assignment
-and marked TCP port 9899 as "Reserved".</t>
+IANA is requested to update this assignment to refer to [RFCXXXX].
+As per <xref target='RFC6335'/>, the Assignee is [IESG] and the Contact is
+[IETF_Chair].</t>
+
 </section>
 
 <section>
