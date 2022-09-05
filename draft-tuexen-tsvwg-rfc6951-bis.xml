@@ -12,7 +12,6 @@
 
 <!--
 ToDo
- * Integrate IANA considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate Middlebox considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate OOTB handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
