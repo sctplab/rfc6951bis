@@ -12,10 +12,9 @@
 
 <!--
 ToDo
- * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
- * Integrate Middlebox considerations from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate OOTB handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate INIT handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
+ * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Revisit Normative/Informative references
  * Submit
 -->
@@ -412,6 +411,14 @@ number for UDP encapsulation.
 Providing a value of 0 disables UDP encapsulation.</t></dd>
 </dl>
 </section>
+</section>
+
+<section>
+<name>Middlebox Considerations</name>
+<t>Middleboxes often use different timeouts for UDP based flows than
+for other flows.
+Therefore the HEARTBEAT.Interval parameter <bcp14>SHOULD</bcp14> be lowered to
+15 seconds when UDP encapsulation is used.</t>
 </section>
 
 <section>
