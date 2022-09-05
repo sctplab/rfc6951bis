@@ -146,7 +146,8 @@ UDP source port of the received packet containing the INIT chunk.</t></li>
 of the received SCTP packet is disabled and the received SCTP packet is
 not encapsulated, the processing defined in <xref target="RFC9260"/>
 <bcp14>MUST</bcp14> be performed.
-If a packet is sent in response, it MUST NOT be encapsulated.</t></li>
+If a packet is sent in response, it <bcp14>MUST NOT</bcp14> be
+encapsulated.</t></li>
 <li><t>If the UDP encapsulation for outgoing packets towards the source address
 of the received SCTP packet is enabled and the received SCTP packet is not
 encapsulated, an SCTP packet containing an ABORT chunk <bcp14>MUST</bcp14> be
@@ -266,8 +267,18 @@ SCTP association.</t>
 <t>If firewalls will be applied at the SCTP association level, they have to
 take the UDP encapsulation into account.</t>
 </section>
+</middle>
 
-<section>
+<back>
+<references>
+<name>Normative References</name>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6951.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9260.xml"/>
+</references>
+
+<section numbered='false'>
 <name>Acknowledgments</name>
 <t>The authors wish to thank <contact fullname="Georgios Papastergiou"/> for the initial
 problem report.</t>
@@ -279,16 +290,5 @@ for their invaluable comments.</t>
 research and innovation programme under grant agreement No. 644334 (NEAT).
 The views expressed are solely those of the author(s).</t>
 </section>
-
-</middle>
-
-<back>
-<references>
-<name>Normative References</name>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6951.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
-<xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9260.xml"/>
-</references>
 </back>
 </rfc>
