@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
 <?rfc toc='yes'?>
 <?rfc compact='yes'?>
 <?rfc subcompact='no'?>
@@ -10,7 +9,7 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-07-to-be"
+     docName="draft-tuexen-tsvwg-sctp-udp-encaps-cons-07"
      updates="6951"
      version="3">
 
@@ -18,7 +17,7 @@
 <title abbrev='Considerations for SCTP over UDP'>
 Additional Considerations for UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
 </title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-06-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-sctp-udp-encaps-cons-07"/>
 
 
 <!-- ************** MICHAEL TUEXEN *************** -->
