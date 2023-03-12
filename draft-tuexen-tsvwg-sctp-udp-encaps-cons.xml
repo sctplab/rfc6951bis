@@ -188,7 +188,7 @@ following figure.</t>
 <artwork align="left">
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|        Cause Code = 14        |       Cause Length = 8        |
+|  Cause Code = 14 (suggested)  |       Cause Length = 8        |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |   Current Encapsulation Port  |     New Encapsulation Port    |
 +-------------------------------+-------------------------------+
@@ -199,7 +199,7 @@ following figure.</t>
 <dd>
 <t>This field holds the IANA defined cause code for the
 "Restart of an Association with New Encapsulation Port" error cause.
-IANA is requested to assign the value 14 for this cause code.</t>
+IANA is requested to assign the value 14 (suggested) for this cause code.</t>
 </dd>
 <dt>Cause Length: 2 bytes (unsigned integer)</dt>
 <dd>
@@ -247,10 +247,10 @@ SCTP:</t>
 <table>
 <name>New entry in Error Cause Codes registry</name>
 <thead>
-<tr><th>Value</th> <th>Cause Code                                           </th> <th>Reference</th></tr>
+<tr><th>Value</th>           <th>Cause Code                                           </th> <th>Reference</th></tr>
 </thead>
 <tbody>
-<tr><td>14   </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
+<tr><td>14 (suggested) </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
 </tbody>
 </table>
 </section>
