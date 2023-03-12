@@ -145,12 +145,11 @@ To use multiple addresses, the dynamic address reconfiguration extension
 described in <xref target='RFC5061'/> <bcp14>MUST</bcp14> be used only with
 wildcard addresses in the ASCONF chunks (Address Configuration Change Chunks)
 in combination with <xref target='RFC4895'/>.</t>
-
 <t>For multihomed SCTP associations, the address management
 as described in <xref target='emb_addrs'/> <bcp14>MUST</bcp14> be performed.</t>
-
 <t>SCTP sends periodic HEARTBEAT chunks on all idle paths.
 These can keep the NAT state alive.</t>
+<!-- FIXME: Describe SCTP port distribution behind NATs -->
 </section>
 </section>
 
@@ -208,6 +207,8 @@ local or remote UDP encapsulation port number through APIs.</t>
 
 <section>
 <name>Packet Format</name>
+<section>
+<name>SCTP/UDP/IPv4 Packet Format</name>
 <t>To encapsulate an SCTP packet, a UDP header
 as defined in <xref target='RFC0768'/> is inserted between
 the IP header as defined in <xref target='RFC0791'/>
@@ -236,6 +237,10 @@ used.</t>
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
 </figure>
+</section>
+
+<section>
+<name>SCTP/UDP/IPv6 Packet Format</name>
 <t>The packet format for an encapsulated SCTP packet when using
 IPv6 as defined in <xref target='RFC8200'/> is shown in
 <xref target='sctp_upd_ipv6'/>.
@@ -267,6 +272,54 @@ Please note that the number m of IPv6 extension headers can be 0.</t>
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
 </figure>
+</section>
+
+<section>
+<name>A New Error Cause</name>
+<t>The error cause indicating an
+"Restart of an Association with New Encapsulation Port" is defined by the
+following figure.</t>
+<figure>
+<name>Restart of an Association with New Encapsulation Port Error Cause</name>
+<artwork align="left">
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Cause Code = 14 (suggested)  |       Cause Length = 8        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Current Encapsulation Port  |     New Encapsulation Port    |
++-------------------------------+-------------------------------+
+</artwork>
+</figure>
+<dl newline="true">
+<dt>Cause Code: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the IANA defined cause code for the
+"Restart of an Association with New Encapsulation Port" error cause.
+IANA is requested to assign the value 14 (suggested) for this cause code.</t>
+</dd>
+<dt>Cause Length: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the length in bytes of the error cause;
+the value <bcp14>MUST</bcp14> be 8.</t>
+</dd>
+<dt>Current Encapsulation Port: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>This field holds the remote encapsulation port currently being used
+for the destination address the received packet containing the INIT chunk was
+sent from.
+If the UDP encapsulation for destination address is currently disabled,
+0 is used.</t>
+</dd>
+<dt>New Encapsulation Port: 2 bytes (unsigned integer)</dt>
+<dd>
+<t>If the received SCTP packet containing the INIT chunk is encapsulated in UDP,
+this field holds the UDP source port number of the UDP packet.
+If the received SCTP packet is not encapsulated in UDP,
+this field is 0.</t>
+</dd>
+</dl>
+<t>All transported integer numbers are in "network byte order" a.k.a., Big Endian.</t>
+</section>
 </section>
 
 <section>
@@ -455,10 +508,10 @@ SCTP:</t>
 <table>
 <name>New Entry in Error Cause Codes Registry</name>
 <thead>
-<tr><th>Value</th> <th>Cause Code                                           </th> <th>Reference</th></tr>
+<tr><th>Value</th>           <th>Cause Code                                           </th> <th>Reference</th></tr>
 </thead>
 <tbody>
-<tr><td>14   </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
+<tr><td>14 (suggested) </td> <td>Restart of an Association with New Encapsulation Port</td> <td>[RFCXXXX]</td></tr>
 </tbody>
 </table>
 <t>This document refers to the already assigned UDP port 9899 (sctp-tunneling).
