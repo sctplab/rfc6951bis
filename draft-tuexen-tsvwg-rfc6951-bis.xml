@@ -12,7 +12,6 @@
 
 <!--
 ToDo
- * Integrate OOTB handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate INIT handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
  * Revisit Normative/Informative references
@@ -24,6 +23,7 @@ ToDo
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
 for End-Host to End-Host Communication
 </title>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-03-to-be"/>
 
 <!-- ************** MICHAEL TUEXEN *************** -->
 <author initials='M.' surname='Tüxen' fullname='Michael Tüxen'>
@@ -305,6 +305,28 @@ port for the destination address the SCTP packet is received from
 <t>When a non-encapsulated SCTP packet is received by the SCTP stack,
 the encapsulation of outgoing packets belonging to the same association and
 the corresponding destination address <bcp14>MUST</bcp14> be disabled.</t>
+</section>
+
+<section>
+<name>Handling of Out of the Blue Packets</name>
+<t>If the processing of an out of the blue packet requires the sending
+of a packet in response according to the rules specified in Section 8.4 of
+<xref target="RFC9260"/>, the following rules apply:</t>
+<ol>
+<li>
+<t>If the received packet was encapsulated in UDP, the response packets
+<bcp14>MUST</bcp14> also be encapsulated in UDP.
+The UDP source port and UDP destination port used for sending the response
+packet are the UDP destination port and UDP source port of the received
+packet.</t>
+</li>
+<li>
+<t>If the received packet was not encapsulated in UDP, the response packet
+<bcp14>MUST NOT</bcp14> be encapsulated in UDP.</t>
+</li>
+</ol>
+<t>Please note that in these cases a check of the verification tag is not
+possible.</t>
 </section>
 
 <section anchor='icmp_cons'>
