@@ -10,14 +10,6 @@
      version="3"
      tocDepth="4">
 
-<!--
-ToDo
- * Integrate INIT handling from draft-tuexen-tsvwg-sctp-udp-encaps-cons
- * Integrate Security section from draft-tuexen-tsvwg-sctp-udp-encaps-cons
- * Revisit Normative/Informative references
- * Submit
--->
-
 <front>
 <title abbrev='UDP Encapsulation of SCTP Packets'>
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
@@ -149,7 +141,8 @@ in combination with <xref target='RFC4895'/>.</t>
 as described in <xref target='emb_addrs'/> <bcp14>MUST</bcp14> be performed.</t>
 <t>SCTP sends periodic HEARTBEAT chunks on all idle paths.
 These can keep the NAT state alive.</t>
-<!-- FIXME: Describe SCTP port distribution behind NATs -->
+<t>If multiple SCTP endpoints are operating be a NAT, the local SCTP port
+numbers used by the SCTP endpoints <bcp14>MUST</bcp14> all be different.</t>
 </section>
 </section>
 
@@ -274,7 +267,7 @@ Please note that the number m of IPv6 extension headers can be 0.</t>
 </figure>
 </section>
 
-<section>
+<section anchor='error_cause'>
 <name>A New Error Cause</name>
 <t>The error cause indicating an
 "Restart of an Association with New Encapsulation Port" is defined by the
@@ -323,7 +316,7 @@ this field is 0.</t>
 </section>
 
 <section>
-<name>Encapsulation Procedure</name>
+<name>Sending Packets</name>
 <t>Within the UDP header, the source port <bcp14>MUST</bcp14> be the local UDP
 encapsulation port number of the SCTP stack, and the destination port
 <bcp14>MUST</bcp14> be the remote UDP encapsulation port number maintained for
@@ -332,12 +325,10 @@ the association and the destination address to which the packet is sent
 <t>Because the SCTP packet is the UDP payload, the length of the
 UDP packet <bcp14>MUST</bcp14> be the length of the SCTP packet plus the size of
 the UDP header.</t>
-
 <t>The SCTP checksum <bcp14>MUST</bcp14> be computed for IPv4 and IPv6, and the
 UDP checksum <bcp14>SHOULD</bcp14> be computed for IPv4 and IPv6.
 (See <xref target='RFC0768'/> regarding IPv4;
 see <xref target='RFC8200'/> and <xref target='RFC6936'/> regarding IPv6.)
-
 Although UDP with a zero checksum over IPv6 is allowed under certain
 constraints <xref target='RFC6936'/>, this document does not specify mechanisms
 for this mode.
@@ -346,7 +337,7 @@ zero UDP checksum would be counter to the goal of legacy NAT traversal.</t>
 </section>
 
 <section anchor='decaps'>
-<name>Decapsulation Procedure</name>
+<name>Receiving Packets</name>
 <t>When an encapsulated packet is received, the UDP header
 is removed.
 Then, the generic lookup is performed, as done by an SCTP stack whenever a
@@ -358,6 +349,77 @@ port for the destination address the SCTP packet is received from
 <t>When a non-encapsulated SCTP packet is received by the SCTP stack,
 the encapsulation of outgoing packets belonging to the same association and
 the corresponding destination address <bcp14>MUST</bcp14> be disabled.</t>
+<t>If the verification tag can't be checked, the procedures described in one
+of the following sections <bcp14>MUST</bcp14> be followed.</t>
+</section>
+
+<section>
+<name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Associations</name>
+<t>SCTP packets containing an INIT chunk have the verification tag 0 in
+the common header.
+Therefore the verification tag can't be checked.</t>
+<t>The following rules apply when processing the received packet:</t>
+<ol>
+<li><t>The remote UDP encapsulation port for the source address of the received
+SCTP packet <bcp14>MUST NOT</bcp14> be updated if the encapsulation of outgoing
+packets is enabled and the received SCTP packet is encapsulated.</t></li>
+<li><t>The UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet <bcp14>MUST NOT</bcp14> be enabled, if it is
+disabled and the received SCTP packet is encapsulated.</t></li>
+<li><t>The UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet <bcp14>MUST NOT</bcp14> be disabled, if it is
+enabled and the received SCTP packet is not encapsulated.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet is disabled and the received SCTP packet is
+encapsulated, an SCTP packet containing an ABORT chunk <bcp14>MUST</bcp14> be
+sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined below
+indicating an "Restart of an Association with New Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST</bcp14> be encapsulated in
+UDP.
+The UDP source port and UDP destination port used for sending the
+packet containing the ABORT chunk are the UDP destination port and
+UDP source port of the received packet containing the INIT chunk.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet is disabled and the received SCTP packet is
+not encapsulated, the processing defined in <xref target="RFC9260"/>
+<bcp14>MUST</bcp14> be performed.
+If a packet is sent in response, it <bcp14>MUST NOT</bcp14> be
+encapsulated.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet is enabled and the received SCTP packet is not
+encapsulated, an SCTP packet containing an ABORT chunk <bcp14>MUST</bcp14> be
+sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined in
+<xref target="error_cause"/> indicating an "Restart of an Association with New
+Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST NOT</bcp14> be encapsulated
+in UDP.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet is enabled and the received SCTP packet is
+encapsulated, but the UDP source port of the received SCTP packet is not
+equal to the remote UDP encapsulation port for the source address of the
+received SCTP packet, an SCTP packet containing an ABORT chunk
+<bcp14>MUST</bcp14> be sent.
+The ABORT chunk <bcp14>MAY</bcp14> include the error cause defined in
+<xref target="error_cause"/> indicating an "Restart of an Association with
+New Encapsulation Port".
+This packet containing the ABORT chunk <bcp14>MUST</bcp14> be encapsulated in
+UDP.
+The UDP source port and UDP destination port used for sending the
+packet containing the ABORT chunk are the UDP destination port and
+UDP source port of the received packet containing the INIT chunk.</t></li>
+<li><t>If the UDP encapsulation for outgoing packets towards the source address
+of the received SCTP packet is enabled and the received SCTP packet is
+encapsulated and the UDP source port of the received SCTP packet is
+equal to the remote UDP encapsulation port for the source address of the
+received SCTP packet, the processing defined in <xref target="RFC9260"/>
+<bcp14>MUST</bcp14> be performed.
+If a packet is sent in response, it <bcp14>MUST</bcp14> be encapsulated.
+The UDP source port and UDP destination port used for sending the
+packet containing the ABORT chunk are the UDP destination port and
+UDP source port of the received packet containing the INIT chunk.</t></li>
+</ol>
 </section>
 
 <section>
