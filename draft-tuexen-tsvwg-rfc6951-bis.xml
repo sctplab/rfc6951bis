@@ -5,7 +5,7 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-rfc6951-bis-04-to-be"
+     docName="draft-tuexen-tsvwg-rfc6951-bis-05"
      obsoletes="6951"
      version="3"
      tocDepth="4">
@@ -15,7 +15,7 @@
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
 for End-Host to End-Host Communication
 </title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-04-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-05"/>
 
 <!-- ************** MICHAEL TUEXEN *************** -->
 <author initials='M.' surname='Tüxen' fullname='Michael Tüxen'>
@@ -33,7 +33,7 @@ for End-Host to End-Host Communication
 
 <!-- ************** RANDALL STEWART ***************-->
 <author initials="R." surname="Stewart" fullname="Randall R. Stewart">
-<organization>Netflix, Inc.</organization>
+<organization></organization>
 <address>
     <postal>
         <street>15214 Pendio Drive</street>
@@ -354,7 +354,7 @@ of the following sections <bcp14>MUST</bcp14> be followed.</t>
 </section>
 
 <section>
-<name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Associations</name>
+<name>Handling of SCTP Packets Containing an INIT Chunk Matching an Existing Association</name>
 <t>SCTP packets containing an INIT chunk have the verification tag 0 in
 the common header.
 Therefore the verification tag can't be checked.</t>
