@@ -5,7 +5,7 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-rfc6951-bis-06-to-be"
+     docName="draft-tuexen-tsvwg-rfc6951-bis-07-to-be"
      obsoletes="6951"
      version="3"
      tocDepth="4">
@@ -15,7 +15,7 @@
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
 for End-Host to End-Host Communication
 </title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-06-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-07-to-be"/>
 
 <!-- ************** MICHAEL TUEXEN *************** -->
 <author initials='M.' surname='Tüxen' fullname='Michael Tüxen'>
@@ -65,7 +65,8 @@ UDP encapsulation is being used by the peer, nor the mechanisms for
 determining which remote UDP port number can be used.
 These functions are out of scope for this document.</t>
 <t>This document covers only end-hosts and not tunneling (egress or ingress)
-endpoints.</t>
+endpoints.
+It obsoletes RFC 6951.</t>
 </abstract>
 
 </front>
