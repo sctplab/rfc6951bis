@@ -5,7 +5,7 @@
      submissionType="IETF"
      consensus="true"
      category="std"
-     docName="draft-tuexen-tsvwg-rfc6951-bis-07-to-be"
+     docName="draft-tuexen-tsvwg-rfc6951-bis-08-to-be"
      obsoletes="6951"
      version="3"
      tocDepth="4">
@@ -15,7 +15,7 @@
 UDP Encapsulation of Stream Control Transmission Protocol (SCTP) Packets
 for End-Host to End-Host Communication
 </title>
-<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-07-to-be"/>
+<seriesInfo name="Internet-Draft" value="draft-tuexen-tsvwg-rfc6951-bis-08-to-be"/>
 
 <!-- ************** MICHAEL TUEXEN *************** -->
 <author initials='M.' surname='Tüxen' fullname='Michael Tüxen'>
